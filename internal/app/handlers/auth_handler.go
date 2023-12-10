@@ -3,21 +3,9 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
-
-	"github.com/carloshahn90/EddieProject/internal/app/services"
 )
 
-type AuthHandler struct {
-	authService services.AuthService
-}
-
-func NewAuthHandler() *AuthHandler {
-	return &AuthHandler{
-		authService: services.NewAuthService(),
-	}
-}
-
-func (ah *AuthHandler) Login(w http.ResponseWriter, r *http.Request) {
+func (ah *Handler) Login(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	var user map[string]string
 	err := decoder.Decode(&user)
